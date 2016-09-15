@@ -1,7 +1,7 @@
 package main.java.model;
 
 
-public class Login {
+public class LoginResponse {
 
 	private String status;
 	private Data data;

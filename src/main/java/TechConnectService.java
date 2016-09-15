@@ -3,15 +3,24 @@ import java.util.List;
 
 import main.java.model.Catalog;
 import main.java.model.FlowChart;
-import main.java.model.Login;
+import main.java.model.LoginResponse;
 import main.java.model.LoginAttempt;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface TechConnectService {
+	
+	//Define all of the headers which are needed for the communication here
+	//Initially defined as null
+	@Headers({
+		"X-Auth-Token:",
+		"X-User-Id:"
+	})
+	
 	//Just want to get the catalog, no input needed
 	@GET("api/v1/catalog.json") //CHANGE FOR THE REAL THING! This was for testing
 	Call<Catalog> catalog();
@@ -25,10 +34,10 @@ public interface TechConnectService {
 	
 	//Login the user
 	@POST("api/v1/login")
-	Call<Login> login(@Body LoginAttempt l);
+	Call<LoginResponse> login(@Body LoginAttempt l);
 	
 	//Logout the user. I don't think that I need to pass in anything? Maybe the user?
 	@POST("api/v1/logout")
-	Call<Login> logout();
+	Call<LoginResponse> logout();
 
 }

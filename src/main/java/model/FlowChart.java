@@ -10,7 +10,7 @@ private String name;
 private String description;
 private String updateDate;
 private String version;
-private String author;
+private String owner;
 private TCGraph graph; //Change this to a Graph Type at some point
 
 /**
@@ -109,7 +109,7 @@ this.version = version;
 * The author
 */
 public String getAuthor() {
-return author;
+return owner;
 }
 
 /**
@@ -118,7 +118,7 @@ return author;
 * The author
 */
 public void setAuthor(String author) {
-this.author = author;
+this.owner = author;
 }
 
 /**

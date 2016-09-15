@@ -16,7 +16,7 @@ public class Node {
 	private List<String> resources = new ArrayList<String>();
 	private List<String> images = new ArrayList<String>();
 	private String _id;
-	private String type;
+	//private String _type;
 	
 	/**
 	* 
@@ -107,22 +107,13 @@ public class Node {
 	public void setId(String id) {
 	this._id = id;
 	}
-	
-	/**
-	* 
-	* @return
-	* The type
-	*/
+	/*
 	public String getType() {
-	return type;
+	return _type;
 	}
-	
-	/**
-	* 
-	* @param type
-	* The _type
-	*/
+
 	public void setType(String type) {
-	this.type = type;
+	this._type = type;
 	}
+	*/
 }

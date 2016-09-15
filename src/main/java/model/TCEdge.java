@@ -11,10 +11,10 @@ public class TCEdge {
 
 	private String details;
 	private String _id;
-	private String _type;
 	private String _outV;
 	private String _inV;
 	private String _label;
+	//private String _type;
 	
 	/**
 	* 
@@ -52,31 +52,24 @@ public class TCEdge {
 	this._id = id;
 	}
 	
-	/**
-	* 
-	* @return
-	* The type
-	*/
+	
+	/*
 	public String getType() {
 	return _type;
 	}
 	
-	/**
-	* 
-	* @param type
-	* The _type
-	*/
+
 	public void setType(String type) {
 	this._type = type;
 	}
-	
+	*/
 	/**
 	* 
 	* @return
 	* The outV
 	*/
 	public String getOutV() {
-	return _outV;
+	return this._outV;
 	}
 	
 	/**
