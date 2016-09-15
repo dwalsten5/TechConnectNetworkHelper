@@ -14,6 +14,9 @@ import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
 import com.tinkerpop.blueprints.util.io.graphson.GraphSONReader;
 
+import main.java.model.FlowChart;
+import main.java.model.TCGraph;
+
 public class NetworkHelperMain {
 	//Need to use this guy to make major operations
 	public static Gson gson = new Gson();

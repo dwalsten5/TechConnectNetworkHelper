@@ -1,4 +1,4 @@
-package main.java;
+package main.java.model;
 
 import com.tinkerpop.blueprints.Graph;
 import com.tinkerpop.blueprints.impls.tg.TinkerGraph;

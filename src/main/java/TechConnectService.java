@@ -1,6 +1,10 @@
 package main.java;
 import java.util.List;
 
+import main.java.model.Catalog;
+import main.java.model.FlowChart;
+import main.java.model.Login;
+import main.java.model.LoginAttempt;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

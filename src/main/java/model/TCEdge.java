@@ -1,4 +1,4 @@
-package main.java;
+package main.java.model;
 
 /**
  * This is a POJO class for the Retrofit Gson converter. Has to have these EXACT fields in order
