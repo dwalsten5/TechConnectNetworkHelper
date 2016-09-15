@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import main.java.model.FlowChart;
+import main.java.model.Login;
+import main.java.model.LoginAttempt;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -54,6 +56,18 @@ public class TechConnectNetworkHelper {
 		return service.flowcharts(query).execute().body();
 		
 		
+	}
+	
+	//I have no clue how this should be done at all just threw something together.
+	public boolean login(LoginAttempt l, Login user) throws IOException {
+		Response<Login> resp = service.login(l).execute();
+		user = resp.body();
+		return resp.isSuccessful();
+	}
+	
+	public boolean logout() throws IOException {
+		Response<Login> resp = service.logout().execute();
+		return resp.isSuccessful();
 	}
 
 
