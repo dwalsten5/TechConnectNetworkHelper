@@ -1,6 +1,7 @@
 package main.java;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,6 +30,29 @@ public class TechConnectNetworkHelper {
 		//Call and get a response 
 		List<FlowChart> flowcharts = service.catalog().execute().body().getFlowCharts();
 		return flowcharts;
+	}
+	
+	public FlowChart getChart(int id) throws IOException {
+		return service.flowchart(id).execute().body();
+	}
+	
+	/**
+	 * This function is used to get a list of specific charts. This list must be sent to
+	 * Retrofit as a comma separated list of ids as a String. This converts from a list of integers
+	 * for now. May not want that format in the future, but it's a place to start.
+	 * @param ids
+	 * @return
+	 * @throws IOException
+	 */
+	public List<FlowChart> getCharts(int[] ids) throws IOException {
+		String query = "";
+		for (int i = 0; i < ids.length - 1 ; i++) {
+			query = query + String.format("%d,", ids[i]);
+		}
+		query = query + String.format("%d", ids[ids.length - 1]);
+		return service.flowcharts(query).execute().body();
+		
+		
 	}
 
 

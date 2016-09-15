@@ -1,5 +1,7 @@
 package main.java;
 
+import com.tinkerpop.blueprints.Graph;
+import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
 
 public class FlowChart {
 
@@ -9,7 +11,7 @@ private String description;
 private String updateDate;
 private String version;
 private String author;
-private Object graph; //Change this to a Graph Type at some point
+private TCGraph graph; //Change this to a Graph Type at some point
 
 /**
 * 
@@ -124,7 +126,7 @@ this.author = author;
 * @return
 * The graph
 */
-public Object getGraph() {
+public TCGraph getGraph() {
 return graph;
 }
 
@@ -133,8 +135,8 @@ return graph;
 * @param graph
 * The graph
 */
-public void setGraph(Object graph) {
-this.graph = graph;
+public void setGraph(TCGraph graph) {
+	this.graph = graph;
 }
 
 }
