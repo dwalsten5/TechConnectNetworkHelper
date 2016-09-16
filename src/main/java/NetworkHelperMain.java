@@ -15,6 +15,7 @@ import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
 import com.tinkerpop.blueprints.util.io.graphson.GraphSONReader;
 
 import main.java.model.FlowChart;
+import main.java.model.LoginAttempt;
 import main.java.model.TCGraph;
 
 public class NetworkHelperMain {
@@ -27,16 +28,26 @@ public class NetworkHelperMain {
 		Graph real_graph = new TinkerGraph();
 		GraphSONReader reader = new GraphSONReader(real_graph);
 		
+		//Try out logging in to the site
+		LoginAttempt la = new LoginAttempt();
+		la.setEmail("dwalste1@jhu.edu");
+		la.setPassword("dwalsten");
+		if (dude.login(la) ) {
+			System.out.println("SUCCESS");
+		} else {
+			System.out.println("Failure");
+		}
+		
 		//Test out the capabilities of Retrofit to read the catalog - FUNCTIONAL!
-		/*
+		
 		List<FlowChart> flowcharts = dude.getCatalog();
 		System.out.println(flowcharts.get(0).getId());
 		System.out.println(flowcharts.get(0).getDescription());
-		*/
 		
 		
 		//Test the simple flowchart get method - FUNCTIONAL!
-		FlowChart important = dude.getChart(125);
+		
+		FlowChart important = dude.getChart("testchart99999999");
 		System.out.println(important.getName());
 		System.out.println(important.getDescription());
 		//Convert TCGraph to the TinkerGraph
@@ -52,6 +63,16 @@ public class NetworkHelperMain {
 			System.out.println(e.getLabel());
 			System.out.println(e.getVertex(Direction.OUT));
 			System.out.println(e.getVertex(Direction.IN));
+		}
+		
+		
+		
+		
+		//Then logout
+		if (dude.logout()) {
+			System.out.println("Success");
+		} else {
+			System.out.println("Failure");
 		}
 		
 		

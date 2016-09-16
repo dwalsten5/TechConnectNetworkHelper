@@ -5,7 +5,7 @@ import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
 
 public class FlowChart {
 
-private String id;
+private String _id;
 private String name;
 private String description;
 private String updateDate;
@@ -19,7 +19,7 @@ private TCGraph graph; //Change this to a Graph Type at some point
 * The id
 */
 public String getId() {
-return id;
+return _id;
 }
 
 /**
@@ -28,7 +28,7 @@ return id;
 * The id
 */
 public void setId(String id) {
-this.id = id;
+this._id = id;
 }
 
 /**

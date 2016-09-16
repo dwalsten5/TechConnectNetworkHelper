@@ -1,19 +1,13 @@
 package main.java;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import main.java.model.Data;
 import main.java.model.FlowChart;
 import main.java.model.LoginAttempt;
 import main.java.model.LoginResponse;
-import okhttp3.Headers;
-import okhttp3.OkHttpClient;
-import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -25,7 +19,8 @@ public class TechConnectNetworkHelper {
 	
 	//First, I need  a Retrofit object which is able to understand JSON
 	
-	public static final String BASE_URL = "http://127.0.0.1:8000"; //This is the base url of the directory we will talk to
+	//public static final String BASE_URL = "http://127.0.0.1:8000"; //This is the base url of the directory we will talk to
+	public static final String BASE_URL = "http://localhost:3000/";
 	private Data user; 
 	
 	private Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
@@ -46,7 +41,7 @@ public class TechConnectNetworkHelper {
 		return flowcharts;
 	}
 	
-	public FlowChart getChart(int id) throws IOException {
+	public FlowChart getChart(String id) throws IOException {
 		return service.flowchart(id).execute().body();
 	}
 	
@@ -58,13 +53,8 @@ public class TechConnectNetworkHelper {
 	 * @return
 	 * @throws IOException
 	 */
-	public List<FlowChart> getCharts(int[] ids) throws IOException {
-		String query = "";
-		for (int i = 0; i < ids.length - 1 ; i++) {
-			query = query + String.format("%d,", ids[i]);
-		}
-		query = query + String.format("%d", ids[ids.length - 1]);
-		return service.flowcharts(query).execute().body();
+	public List<FlowChart> getCharts(String ids) throws IOException {
+		return service.flowcharts(ids).execute().body();
 		
 		
 	}
@@ -72,6 +62,7 @@ public class TechConnectNetworkHelper {
 	//I have no clue how this should be done at all just threw something together.
 	public boolean login(LoginAttempt l) throws IOException {
 		Response<LoginResponse> resp = service.login(l).execute();
+		System.out.println("HERE!");
 		if (resp.isSuccessful()) {
 			user = resp.body().getData();
 		} 
@@ -79,8 +70,13 @@ public class TechConnectNetworkHelper {
 	}
 	
 	public boolean logout() throws IOException {
-		Response<LoginResponse> resp = service.logout().execute();
-		return resp.isSuccessful();
+		//Logout, using the current authroization keys
+		if (user != null) {
+			Response<LoginResponse> resp = service.logout(user.getAuthToken(),user.getUserId()).execute();
+			return resp.isSuccessful();
+		}
+		return false;
+		
 	}
 
 
