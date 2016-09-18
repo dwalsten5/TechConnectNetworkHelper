@@ -3,11 +3,13 @@ package main.java;
 import java.io.IOException;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-import main.java.model.Data;
 import main.java.model.FlowChart;
 import main.java.model.LoginAttempt;
 import main.java.model.LoginResponse;
+import main.java.model.Tokens;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -21,10 +23,10 @@ public class TechConnectNetworkHelper {
 	
 	//public static final String BASE_URL = "http://127.0.0.1:8000"; //This is the base url of the directory we will talk to
 	public static final String BASE_URL = "http://localhost:3000/";
-	private Data user; 
+	private Tokens user = new Tokens();
 	
 	private Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
-			.addConverterFactory(GsonConverterFactory.create())
+			.addConverterFactory(buildGsonConverter())
 			.build();
 	private TechConnectService service = retrofit.create(TechConnectService.class);
 	
@@ -60,8 +62,9 @@ public class TechConnectNetworkHelper {
 	}
 	
 	//I have no clue how this should be done at all just threw something together.
-	public boolean login(LoginAttempt l) throws IOException {
-		Response<LoginResponse> resp = service.login(l).execute();
+	public boolean login(String email, String password) throws IOException {
+		LoginAttempt la = new LoginAttempt(email, password);
+		Response<LoginResponse> resp = service.login(la).execute();
 		System.out.println("HERE!");
 		if (resp.isSuccessful()) {
 			user = resp.body().getData();
@@ -77,6 +80,15 @@ public class TechConnectNetworkHelper {
 		}
 		return false;
 		
+	}
+	
+	private static GsonConverterFactory buildGsonConverter() {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		
+		gsonBuilder.registerTypeAdapter(FlowChart.class, new FlowChartDeserializer());
+		Gson myGson = gsonBuilder.create();
+		
+		return GsonConverterFactory.create(myGson);
 	}
 
 

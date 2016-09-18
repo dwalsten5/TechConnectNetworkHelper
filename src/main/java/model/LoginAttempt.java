@@ -4,6 +4,11 @@ public class LoginAttempt {
 	private String email;
 	private String password;
 	
+	public LoginAttempt(String em, String pass) {
+		this.email = em;
+		this.password = pass;
+	}
+	
 	public String getEmail() {
 		return this.email;
 	}

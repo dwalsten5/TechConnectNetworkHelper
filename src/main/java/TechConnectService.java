@@ -35,7 +35,7 @@ public interface TechConnectService {
 	
 	//Login the user
 	@POST("api/v1/login")
-	Call<LoginResponse> login(@Body LoginAttempt l);
+	Call<LoginResponse> login(@Body LoginAttempt la);
 	
 	//Logout the user. I don't think that I need to pass in anything? Maybe the user?
 	@POST("api/v1/logout")

@@ -4,7 +4,7 @@ package main.java.model;
 public class LoginResponse {
 
 	private String status;
-	private Data data;
+	private Tokens data;
 	private String message;
 
 	/**
@@ -30,7 +30,7 @@ public class LoginResponse {
 	* @return
 	* The data
 	*/
-	public Data getData() {
+	public Tokens getData() {
 	return data;
 	}
 	
@@ -39,7 +39,7 @@ public class LoginResponse {
 	* @param data
 	* The data
 	*/
-	public void setData(Data data) {
+	public void setData(Tokens data) {
 	this.data = data;
 	}
 	
