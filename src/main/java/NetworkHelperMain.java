@@ -1,6 +1,7 @@
 package main.java;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -24,15 +25,16 @@ public class NetworkHelperMain {
 		//Try out logging in to the site
 		
 
-		if (dude.login("dwalste1@jhu.edu","dwalsten" ) ) {
-			System.out.println("SUCCESS");
-		} else {
-			System.out.println("Failure");
+		try {
+			dude.login("dwalste1@jhu.edu","dwalsten" );
+			System.out.println("Success");
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
 		}
 		
 		
 		//Test out the capabilities of Retrofit to read the catalog - FUNCTIONAL!
-		
+		/*
 		List<FlowChart> flowcharts = dude.getCatalog();
 		System.out.println(flowcharts.get(0).getId());
 		System.out.println(flowcharts.get(0).getDescription());
@@ -43,6 +45,7 @@ public class NetworkHelperMain {
 		FlowChart important = dude.getChart("testchart99999999");
 		System.out.println(important.getName());
 		System.out.println(important.getDescription());
+		System.out.println(important.getAllRes());
 		//Convert TCGraph to the TinkerGraph
 		//convertToGraphSON(reader,important.getGraph());
 		TinkerGraph real_graph = new TinkerGraph();
@@ -62,14 +65,25 @@ public class NetworkHelperMain {
 			}
 			
 		}
+		*/
+		/*
+		//Test out the capability of getting multiple flowcharts
+		ArrayList<String> list_charts = new ArrayList<String>();
+		list_charts.add("testchart99999999");
+		String[] list = {"testchart99999999"};
+		List<FlowChart> charts = dude.getCharts(list);
+		System.out.println(charts.get(0).getName());
+		System.out.println(charts.get(0).getDescription());
+		System.out.println(charts.get(0).getAllRes());
+		*/
 		
 		//Then logout
-		if (dude.logout()) {
-			System.out.println("Success");
-		} else {
-			System.out.println("Failure");
+		try {
+			dude.logout();
+			System.out.println("SUCCESS"); 
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
 		}
-		
 		
 
 	}

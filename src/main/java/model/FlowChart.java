@@ -1,5 +1,7 @@
 package main.java.model;
 
+import java.util.List;
+
 import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
 
 public class FlowChart {
@@ -12,6 +14,8 @@ public class FlowChart {
 	private String version;
 	private String owner;
 	private TinkerGraph graph; 
+	private List<String> all_res;
+	private List<ChartComment> comments;
 	
 	
 	/**
@@ -138,6 +142,22 @@ public class FlowChart {
 	*/
 	public void setGraph(TinkerGraph graph) {
 		this.graph = graph;
+	}
+	
+	public List<String> getAllRes() {
+		return this.all_res;
+	}
+	
+	public void setAllRes(List<String> ar) {
+		this.all_res = ar;
+	}
+	
+	public List<ChartComment> getComments() {
+		return this.comments;
+	}
+	
+	public void setComments(List<ChartComment> c) {
+		this.comments = c;
 	}
 
 }

@@ -1,8 +1,11 @@
 package main.java;
+import java.util.ArrayList;
 import java.util.List;
 
 import main.java.model.Catalog;
+import main.java.model.ChartComment;
 import main.java.model.FlowChart;
+import main.java.model.JsendResponse;
 import main.java.model.LoginResponse;
 import main.java.model.LoginAttempt;
 import retrofit2.Call;
@@ -24,21 +27,25 @@ public interface TechConnectService {
 	
 	//Just want to get the catalog, no input needed
 	@GET("api/v1/catalog") //CHANGE FOR THE REAL THING! This was for testing
-	Call<Catalog> catalog();
+	Call<JsendResponse> catalog();
 	
 	@GET("api/v1/chart/{id}")
-	Call<FlowChart> flowchart(@Path("id") String id); 
+	Call<JsendResponse> flowchart(@Path("id") String id); 
 	
-	@GET("api/v1/charts/{ids}")
-	Call<List<FlowChart>> flowcharts(@Path("ids") String ids);
+	@POST("api/v1/charts")
+	Call<JsendResponse> flowcharts(@Body String[] ids);
 	//This String ids is a comma separated list of the ids desired
 	
 	//Login the user
 	@POST("api/v1/login")
-	Call<LoginResponse> login(@Body LoginAttempt la);
+	Call<JsendResponse> login(@Body LoginAttempt la);
 	
 	//Logout the user. I don't think that I need to pass in anything? Maybe the user?
 	@POST("api/v1/logout")
-	Call<LoginResponse> logout(@Header("X-Auth-Token") String auth_token, @Header("X-User-Id") String userId);
+	Call<JsendResponse> logout(@Header("X-Auth-Token") String auth_token, @Header("X-User-Id") String userId);
+	
+	//Attempts to post a comment onto a chart or node with id id.
+	@POST("api/v1/chart/{id}/comment")
+	Call<JsendResponse> comment(@Header("X-Auth-Token") String auth_token, @Header("X-User-Id") String userId, @Body ChartComment comment);
 
 }
