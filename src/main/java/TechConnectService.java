@@ -6,13 +6,14 @@ import main.java.model.Catalog;
 import main.java.model.ChartComment;
 import main.java.model.FlowChart;
 import main.java.model.JsendResponse;
-import main.java.model.LoginResponse;
-import main.java.model.LoginAttempt;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -32,13 +33,15 @@ public interface TechConnectService {
 	@GET("api/v1/chart/{id}")
 	Call<JsendResponse> flowchart(@Path("id") String id); 
 	
+	@FormUrlEncoded
 	@POST("api/v1/charts")
-	Call<JsendResponse> flowcharts(@Body String[] ids);
+	Call<JsendResponse> flowcharts(@Field("ids[]") String[] ids);
 	//This String ids is a comma separated list of the ids desired
 	
 	//Login the user
+	@FormUrlEncoded
 	@POST("api/v1/login")
-	Call<JsendResponse> login(@Body LoginAttempt la);
+	Call<JsendResponse> login(@Field("email") String email, @Field("password") String pass);
 	
 	//Logout the user. I don't think that I need to pass in anything? Maybe the user?
 	@POST("api/v1/logout")

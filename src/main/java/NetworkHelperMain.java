@@ -1,6 +1,7 @@
 package main.java;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class NetworkHelperMain {
 			
 		}
 		*/
-		/*
+		
 		//Test out the capability of getting multiple flowcharts
 		ArrayList<String> list_charts = new ArrayList<String>();
 		list_charts.add("testchart99999999");
@@ -75,7 +76,7 @@ public class NetworkHelperMain {
 		System.out.println(charts.get(0).getName());
 		System.out.println(charts.get(0).getDescription());
 		System.out.println(charts.get(0).getAllRes());
-		*/
+		//
 		
 		//Then logout
 		try {

@@ -12,12 +12,11 @@ import com.google.gson.JsonObject;
 import main.java.model.ChartComment;
 import main.java.model.FlowChart;
 import main.java.model.JsendResponse;
-import main.java.model.LoginAttempt;
-import main.java.model.LoginResponse;
 import main.java.model.Tokens;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.FormUrlEncoded;
 
 
 
@@ -82,8 +81,12 @@ public class TechConnectNetworkHelper {
 	 * @throws IOException
 	 */
 	
+	
 	public List<FlowChart> getCharts(String[] ids) throws IOException {
 		JsendResponse resp = service.flowcharts(ids).execute().body();
+		if (resp == null) {
+			System.out.println("Null");
+		}
 		if (resp.getStatus().equalsIgnoreCase("error")) {
 			throw new IOException(resp.getMessage());
 		} else {
@@ -100,8 +103,7 @@ public class TechConnectNetworkHelper {
 	//
 	//I have no clue how this should be done at all just threw something together.
 	public void login(String email, String password) throws IOException {
-		LoginAttempt la = new LoginAttempt(email, password);
-		JsendResponse resp = service.login(la).execute().body();
+		JsendResponse resp = service.login(email,password).execute().body();
 		//First check to see if the request succeeded
 		if (resp.getStatus().equalsIgnoreCase("error")) {
 			throw new IOException(resp.getMessage());
