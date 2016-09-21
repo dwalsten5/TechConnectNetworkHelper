@@ -8,6 +8,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 
 import main.java.model.ChartComment;
@@ -69,10 +70,11 @@ public class FlowChartDeserializer implements JsonDeserializer<FlowChart> {
 		flowchart.setType(type);
 		
 		//Here are the nullable fields
-		final String image;
-		if (jsonObject.has("image")) {
-			image = jsonObject.get("image").getAsString();
-			flowchart.setImage(image);
+		final JsonElement image = jsonObject.get("image");
+		if (image != JsonNull.INSTANCE) {
+			flowchart.setImage(image.getAsString());
+		} else {
+			flowchart.setImage(null);
 		}
 		
 		final ArrayList<String> resources;

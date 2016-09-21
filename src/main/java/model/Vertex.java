@@ -1,5 +1,6 @@
 package main.java.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vertex {
@@ -8,7 +9,7 @@ public class Vertex {
 	private String name;
 	private String details;
 	private List<String> resources;
-	private  List<String> images;
+	private List<String> images;
 	private List<ChartComment> comments;
 	
 	//These are fields which will be generated once the file is read
@@ -16,6 +17,12 @@ public class Vertex {
 	private List<String> outEdges;
 	private List<String> inEdges;
 	
+	//Default constructor, helps to initialize the fields which are not initialized directly with
+	//the deserializer
+	public Vertex() {
+		outEdges = new ArrayList<String>();
+		inEdges = new ArrayList<String>();
+	}
 	public String getId() {
 		return this._id;
 	}

@@ -13,6 +13,7 @@ import main.java.model.ChartComment;
 import main.java.model.FlowChart;
 import main.java.model.JsendResponse;
 import main.java.model.Tokens;
+import main.java.model.Vertex;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -135,6 +136,7 @@ public class TechConnectNetworkHelper {
 		
 		gsonBuilder.registerTypeAdapter(FlowChart.class, new FlowChartDeserializer());
 		gsonBuilder.registerTypeAdapter(JsendResponse.class, new JsendResponseDeserializer());
+		gsonBuilder.registerTypeAdapter(Vertex.class, new VertexDeserializer());
 		Gson myGson = gsonBuilder.create();
 		
 		return myGson;

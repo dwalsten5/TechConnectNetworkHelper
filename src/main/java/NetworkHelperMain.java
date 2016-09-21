@@ -6,12 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.tinkerpop.blueprints.Direction;
-import com.tinkerpop.blueprints.Edge;
-import com.tinkerpop.blueprints.Vertex;
-import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
 
+import main.java.model.Edge;
 import main.java.model.FlowChart;
+import main.java.model.Graph;
+import main.java.model.Vertex;
 
 public class NetworkHelperMain {
 	//Need to use this guy to make major operations
@@ -39,36 +38,32 @@ public class NetworkHelperMain {
 		List<FlowChart> flowcharts = dude.getCatalog();
 		System.out.println(flowcharts.get(0).getId());
 		System.out.println(flowcharts.get(0).getDescription());
-		
+		*/
 		
 		//Test the simple flowchart get method - FUNCTIONAL!
 		
 		FlowChart important = dude.getChart("testchart99999999");
 		System.out.println(important.getName());
 		System.out.println(important.getDescription());
-		System.out.println(important.getAllRes());
+		System.out.println(important.getType());
 		//Convert TCGraph to the TinkerGraph
 		//convertToGraphSON(reader,important.getGraph());
-		TinkerGraph real_graph = new TinkerGraph();
+		Graph real_graph;
 		real_graph = important.getGraph();
 		
 		
 		for(Vertex v : real_graph.getVertices()) {
 			//Use the GraphSONUtility to convert and add each vertex the graph?
-			for (String key: v.getPropertyKeys()) {
-				System.out.println(v.getProperty(key).toString());
-				
-			}
-			for (Edge e : v.getEdges(Direction.OUT)) {
-				System.out.println(e.getLabel());
-				System.out.println(e.getVertex(Direction.OUT));
-				System.out.println(e.getVertex(Direction.IN));
+			System.out.println(v.getId());
+			System.out.println(v.getName());
+			for (String e : v.getInEdges()) {
+				System.out.println(real_graph.getEdge(e).getLabel());
 			}
 			
 		}
-		*/
+		//
 		
-		//Test out the capability of getting multiple flowcharts
+		/*Test out the capability of getting multiple flowcharts
 		ArrayList<String> list_charts = new ArrayList<String>();
 		list_charts.add("testchart99999999");
 		String[] list = {"testchart99999999"};
@@ -76,7 +71,7 @@ public class NetworkHelperMain {
 		System.out.println(charts.get(0).getName());
 		System.out.println(charts.get(0).getDescription());
 		System.out.println(charts.get(0).getAllRes());
-		//
+		*/
 		
 		//Then logout
 		try {

@@ -5,6 +5,7 @@ import java.lang.reflect.Type;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
@@ -69,6 +70,8 @@ public class FlowChartSerializer implements JsonSerializer<FlowChart> {
         //Checking to see if there any of the optional fields are present
         if (flowchart.getImage() != null) {
         	jsonObject.addProperty("image", flowchart.getImage());
+        } else {
+        	jsonObject.add("image", JsonNull.INSTANCE);
         }
         if(flowchart.getResources() != null) {
         	JsonElement res = myGson.toJsonTree(flowchart.getResources());
