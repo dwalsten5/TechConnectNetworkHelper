@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
-
-import main.java.model.Edge;
-import main.java.model.FlowChart;
-import main.java.model.Graph;
-import main.java.model.Vertex;
+import com.java.TechConnectNetworkHelper;
+import com.java.model.Edge;
+import com.java.model.FlowChart;
+import com.java.model.Graph;
+import com.java.model.Vertex;
 
 public class NetworkHelperMain {
 	//Need to use this guy to make major operations
@@ -41,7 +41,9 @@ public class NetworkHelperMain {
 		*/
 		
 		//Test the simple flowchart get method - FUNCTIONAL!
+		//
 		
+		/*
 		FlowChart important = dude.getChart("testchart99999999");
 		System.out.println(important.getName());
 		System.out.println(important.getDescription());
@@ -61,7 +63,7 @@ public class NetworkHelperMain {
 			}
 			
 		}
-		//
+		*/
 		
 		/*Test out the capability of getting multiple flowcharts
 		ArrayList<String> list_charts = new ArrayList<String>();
